@@ -25,7 +25,7 @@ Ensure the following dependencies are installed on your machine:
    docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:management
 
 3. Start Nginx:
-    Ensure Nginx is running and configured to listen on port 9000 using the provided Nginx configuration file.
+    Ensure Nginx is running and configured to listen on port 9001 using the provided Nginx configuration file.
 
 4. Run the subscriber `python3 subscriber.py`
 
