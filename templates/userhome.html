@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome, {{ username }}</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background-color: #333;
+            padding: 20px 0;
+            color: #4CAF50; /* Green color for header */
+        }
+
+        header nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: #45a049; /* Darker green on hover */
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        main {
+            padding: 40px 20px;
+            background-color: #222;
+            color: #ccc;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin: 20px 0;
+        }
+
+        footer {
+            background-color: #333;
+            padding: 10px 0;
+            color: #ccc;
+            font-size: 0.6rem;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Card Style */
+        .card {
+            background-color: #333;
+            padding: 20px;
+            margin: 20px;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h3 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #4CAF50;
+        }
+
+        /* Button style */
+        .btn {
+            padding: 10px 20px;
+            background-color: #4CAF50; /* Green button */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome, {{ username }}!</h1>
+        <nav>
+            <a href="/home/{{username}}">Home</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card">
+            <h3>Requested Votes</h3>
+            <p>View and manage your requested votes.</p>
+            <a href="/requested-votes?username={{ username }}" class="btn">View Requested Votes</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 SecureVotes. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
+

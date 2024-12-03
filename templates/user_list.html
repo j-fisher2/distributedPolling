@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: yellow;
+        }
+
+        header {
+            background-color: #333;
+            padding: 20px 0;
+            color: #4CAF50; /* Green color for header */
+        }
+
+        header nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: yellow;
+        }
+
+        .user-list {
+            display: flex;
+            flex-wrap: wrap; /* Allows wrapping to the next row */
+            gap: 20px; /* Space between cards */
+            justify-content: center; /* Center the rows horizontally */
+            max-width: 1200px; 
+            margin: 40px auto;
+        }
+
+        .user-item {
+            flex: 1 1 calc(33.333% - 40px); 
+            max-width: calc(33.333% - 40px); 
+            min-width: 250px; /* Minimum width to prevent squishing for fewer items */
+            box-sizing: border-box; 
+            background-color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-item h2 {
+            font-size: 1.5rem;
+            color: yellow;
+            margin-bottom: 5px;
+        }
+
+        .user-item p {
+            font-size: 1rem;
+            color: #ccc;
+            margin: 5px 0;
+        }
+
+        footer {
+            background-color: #333;
+            padding: 10px 0;
+            color: #ccc;
+            font-size: 0.8rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome, {{ username }}!</h1>
+        <nav>
+            <a href="/admin-home/{{ username }}">Home</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <div class="user-list">
+        {% for user in users %}
+        <div class="user-item">
+            <h2>User ID: {{ user[0] }}</h2>
+            <p><strong>Username:</strong> {{ user[1] }}</p>
+            <p><strong>Password:</strong> {{ user[2] }}</p>
+            <p><strong>Role:</strong> {{ user[3] }}</p>
+            <p><strong>Joined:</strong> {{ user[4] }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <footer>
+        <p>&copy; 2024 SecureVotes. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
+

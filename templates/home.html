@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureVotes - Home</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #4CAF50; /* Green color for the title */
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 40px;
+        }
+
+        .login-button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: #fff;
+            background-color: #4CAF50; /* Green button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+        .container {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to SecureVotes</h1>
+        <p>Connected to {{server}}</p>
+        <button class="login-button" onclick="window.location.href='/login'">Login</button><br><br>
+        <a href="/admin-login" style="color:white">admin</a>
+    </div>
+</body>
+</html>

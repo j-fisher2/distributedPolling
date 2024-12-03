@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topics and Votes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            height: 100vh;
+        }
+        h1 {
+            color: yellow;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            margin-top:0px;
+        }
+        h2 {
+            color: yellow;
+            margin-top: 30px;
+        }
+        p {
+            color: #ccc;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #444;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+            color: yellow;
+        }
+        td {
+            background-color: #2b2b2b;
+        }
+        tr:hover td {
+            background-color: #3a3a3a;
+        }
+        header {
+            background-color: #333;
+            padding: 20px 0;
+            color: #4CAF50; /* Green color for header */
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        header nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: yellow /* Darker green on hover */
+        }
+        p {
+            font-size: 1.1rem;
+            margin: 20px 0;
+        }
+
+        footer {
+            background-color: #333;
+            padding: 10px 0;
+            color: #ccc;
+            font-size: 0.6rem;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome, {{ username }}!</h1>
+        <nav>
+            <a href="/admin-home/{{username}}">Home</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+    <h1>Topics and Votes</h1>
+    {% for topic in correlated_data %}
+        <h2>Topic ID: {{topic.topicID}}</h2>
+        <h4>{{ topic.name }}</h4>
+        <p>{{ topic.description }} (Created At: {{ topic.createdAt }})</p>
+        {% if topic.votes %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Response</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for vote in topic.votes %}
+                        <tr>
+                            <td>{{ vote[0] }}</td>
+                            <td>{{ vote[3] }}</td>
+                            <td>{{ vote[2] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No votes yet for this topic.</p>
+        {% endif %}
+    {% endfor %}
+    <footer>
+        <p>&copy; 2024 SecureVotes. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

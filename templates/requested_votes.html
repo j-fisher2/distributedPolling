@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requested Votes</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background-color: #333;
+            padding: 20px 0;
+            color: #4CAF50; /* Green color for header */
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .vote-card {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .vote-card:hover {
+            transform: scale(1.05);
+        }
+
+        .vote-card h3 {
+            font-size: 1.5rem;
+            color: #4CAF50;
+        }
+
+        .vote-card p {
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+
+        footer {
+            background-color: #333;
+            padding: 10px 0;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin: 0;
+        }
+        header {
+            background-color: #333;
+            padding: 20px 0;
+            color: #4CAF50; /* Green color for header */
+        }
+
+        header nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: #45a049; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Requested Votes for {{ username }}</h1>
+        <nav>
+            <a href="/home/{{username}}">Home</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card-container">
+            {% if votes %}
+                {% for vote in votes %}
+                    <div class="vote-card" onclick="navigateToVote('{{ vote[1] }}', '{{ vote[3] }}', '{{ vote[0] }}','{{ vote[-1] }}')">
+                        <h3>Vote for {{ vote[0] }}</h3>
+                        <p>Vote ID: {{ vote[1] }}</p>
+                        <p>Request Date: {{ vote[2] }}</p>
+                        <p>Topic ID: {{ vote[3] }}</p>
+                        <p>Topic: {{ vote[-1] }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No votes found.</p>
+            {% endif %}
+        </div>
+    </main>
+    <script>
+        function navigateToVote(voteID, topicID, username, topicQuestion) {
+            // Construct the query parameters
+            const queryParams = new URLSearchParams({
+                username:username,
+                voteID: voteID,
+                topicID: topicID,
+                topic: topicQuestion
+            }).toString();
+    
+            // Redirect to the new URL
+            window.location.href = `/vote?${queryParams}`;
+        }
+    </script>
+
+    <footer>
+        <p>&copy; 2024 SecureVotes. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
